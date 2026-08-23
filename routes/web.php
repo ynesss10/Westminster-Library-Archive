@@ -16,8 +16,12 @@ Route::get('/admin', function () {
 
 Route::get('/books', function () {
     return view('books.index');
-});
+})->middleware('auth');
 
 Route::get('/borrowings', function () {
     return view('borrowings.index');
+})->middleware('auth');
+
+Route::get('/archive', function () {
+    return view('archive.index');
 })->middleware('auth');
