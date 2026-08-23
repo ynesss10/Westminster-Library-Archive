@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
         @yield('title', 'WestMinster')
@@ -30,15 +28,15 @@
                     Books
                 </a>
 
+                <a href="{{ url('/archive') }}">
+                    Archive
+                </a>
+
                 <a href="{{ url('/borrowings') }}">
                     My Borrowings
                 </a>
 
-                <form
-                    method="POST"
-                    action="{{ url('/logout') }}"
-                    style="display: inline;"
-                >
+                <form method="POST" action="{{ url('/logout') }}" style="display: inline;">
                     @csrf
 
                     <button type="submit">
@@ -62,4 +60,5 @@
     </main>
 
 </body>
+
 </html>

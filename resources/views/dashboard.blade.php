@@ -18,11 +18,23 @@
         <h3>My Borrowings</h3>
 
         <p>
-            You currently have no active borrowings.
+            View your active and previous book borrowings.
         </p>
+
+        <a href="{{ url('/borrowings') }}">
+            View My Borrowings
+        </a>
+    </section>
+
+    <section>
+        <h3>Explore Books</h3>
 
         <a href="{{ url('/books') }}">
             Browse Books
+        </a>
+
+        <a href="{{ url('/archive') }}">
+            Browse Archive
         </a>
     </section>
 

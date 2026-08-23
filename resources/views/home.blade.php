@@ -5,7 +5,6 @@
 @section('content')
 
     <h1>Welcome to WestMinster</h1>
-
     <p>
         Discover books and manage your library borrowing.
     </p>
