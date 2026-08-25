@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Register</title>
+    <title>Login</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -43,7 +43,7 @@
                     </div>
                 @endif
 
-                <form method="POST" action="/register" class="space-y-3">
+                <form method="POST" action="/login" class="space-y-3">
                     @csrf
 
 
