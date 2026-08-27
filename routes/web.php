@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\Admin\BookController as AdminBookController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BorrowingController;
 
 Route::get('/', function () {
     return view('home');
@@ -45,5 +46,8 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('books', AdminBookController::class);
 
         Route::resource('users', UserController::class)
+            ->only(['index', 'show']);
+
+        Route::resource('borrowings', BorrowingController::class)
             ->only(['index', 'show']);
     });
