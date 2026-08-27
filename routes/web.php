@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\Admin\BookController as AdminBookController;
+use App\Http\Controllers\Admin\DashboardController;
 
 Route::get('/', function () {
     return view('home');
@@ -37,10 +38,8 @@ Route::middleware(['auth', 'role:admin'])
     ->name('admin.')
     ->group(function () {
 
-        Route::get('/', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
+        Route::get('/', [DashboardController::class, 'index'])
+            ->name('dashboard');
 
         Route::resource('books', AdminBookController::class);
-
     });
