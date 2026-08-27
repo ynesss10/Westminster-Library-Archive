@@ -49,6 +49,12 @@
         Kelola User
     </a>
 
+    <br>
+
+    <a href="{{ route('admin.borrowings.index') }}">
+        Kelola Peminjaman
+    </a>
+
 </body>
 
 </html>
