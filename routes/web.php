@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\Admin\BookController as AdminBookController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
     return view('home');
@@ -42,4 +43,7 @@ Route::middleware(['auth', 'role:admin'])
             ->name('dashboard');
 
         Route::resource('books', AdminBookController::class);
+
+        Route::resource('users', UserController::class)
+            ->only(['index', 'show']);
     });
