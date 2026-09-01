@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\BookController as AdminBookController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BorrowingController;
+use App\Http\Controllers\BorrowingController as UserBorrowingController;
+use App\Http\Controllers\ArchiveController;
 
 Route::get('/', function () {
     return view('home');
@@ -24,9 +26,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/books/{book}', [BookController::class, 'show'])
         ->name('books.show');
 
-    Route::get('/archive', function () {
-        return view('archive.index');
-    })->name('archive');
+    Route::post('/books/{book}/request', [UserBorrowingController::class, 'request'])
+        ->name('borrowings.request');
+
+    Route::get('/archive', [ArchiveController::class, 'index'])
+        ->name('archive.index');
 
     Route::get('/borrowings', function () {
         return view('borrowings.index');
