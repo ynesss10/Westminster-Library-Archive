@@ -6,7 +6,7 @@
 
     <h1>Admin Dashboard</h1>
 
-    <p>Selamat datang di dashboard admin WestMinster.</p>
+    <p>Selamat datang di dashboard admin Westminster.</p>
 
     <hr>
 

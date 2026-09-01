@@ -9,7 +9,7 @@
         <div class="mb-6">
             <h1 class="text-3xl font-bold text-gray-900 mb-4">Manajemen User</h1>
             <a href="{{ route('admin.dashboard') }}" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                ← Kembali ke Dashboard
+                ← Kembali Ke Dashboard
             </a>
         </div>
 

@@ -3,7 +3,7 @@
             <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
                 <span>
                     <span class="font-display block text-lg font-semibold leading-none">Westminster</span>
-                    <span class="text-[11px] uppercase tracking-[0.2em] text-white/50">Library Archive</span>
+                    <span class="text-[11px] uppercase tracking-[0.2em] text-white/50">Library - Archive</span>
                 </span>
             </a>
             <nav class="flex items-center gap-8 text-sm">
