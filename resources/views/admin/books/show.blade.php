@@ -14,11 +14,11 @@
         </p>
 
         <h1 class="font-serif text-4xl text-[#101d33] font-normal">
-            Book Details.
+            Book Details
         </h1>
 
         <p class="text-sm text-gray-500 mt-3">
-            Detailed information about this book in the WestMinster collection.
+            Detailed information about this book in the Westminster collection.
         </p>
 
     </div>
@@ -263,7 +263,7 @@
                                hover:bg-[#1c2d48]
                                transition"
                     >
-                        VIEW DIGITAL FILE →
+                        VIEW DIGITAL FILE
                     </a>
 
                 </div>
@@ -290,7 +290,7 @@
                    hover:text-[#101d33]
                    transition"
         >
-            ← BACK TO COLLECTION
+            BACK TO COLLECTION
         </a>
 
 

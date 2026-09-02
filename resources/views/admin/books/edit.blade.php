@@ -14,14 +14,14 @@
         </p>
 
         <h1 class="font-serif text-4xl text-[#101d33] font-normal">
-            Edit Book.
+            Edit Book
         </h1>
 
         <p class="text-sm text-gray-500 mt-3 max-w-xl">
             Update the information and details of
             <span class="text-[#101d33]">
                 {{ $book->title }}
-            </span>.
+            </span>
         </p>
 
     </div>
@@ -55,10 +55,10 @@
 
     {{-- Form --}}
     <form
+        id="editBookForm"
         action="{{ route('admin.books.update', $book) }}"
         method="POST"
         enctype="multipart/form-data"
-        onsubmit="return confirm('Apakah Anda yakin ingin menyimpan perubahan buku ini?');"
     >
 
         @csrf
@@ -351,7 +351,8 @@
 
 
             <button
-                type="submit"
+                type="button"
+                onclick="openConfirmModal()"
                 class="w-full sm:w-auto
                        bg-[#101d33]
                        text-white
@@ -359,7 +360,8 @@
                        text-[10px]
                        tracking-widest
                        hover:bg-[#1c2d48]
-                       transition"
+                       transition
+                       cursor-pointer"
             >
                 CONFIRM CHANGES
             </button>
@@ -382,11 +384,101 @@
 
         <p class="text-xs text-gray-600 max-w-2xl leading-5">
             Accurate book information helps visitors discover
-            and enjoy the WestMinster Library collection.
+            and enjoy the Westminster Library collection.
         </p>
 
     </div>
 
 </div>
+
+{{-- Update Confirmation Modal --}}
+<div id="confirmModal" class="hidden fixed inset-0 bg-black/20 flex items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-sm w-full">
+        <h3 class="font-serif text-2xl text-[#101d33] mb-2">
+            Confirm Changes?
+        </h3>
+
+        <p class="text-sm text-gray-500 mb-1">
+            {{ $book->title }}
+        </p>
+
+        <p class="text-sm text-gray-600 mb-6">
+            Are you sure you want to save changes to this book?
+        </p>
+
+        <div class="flex gap-3">
+            <button
+                type="button"
+                onclick="closeConfirmModal()"
+                class="flex-1
+                       border border-gray-300
+                       text-gray-600
+                       px-4 py-2
+                       text-[10px]
+                       tracking-widest
+                       hover:border-[#101d33]
+                       hover:text-[#101d33]
+                       transition
+                       cursor-pointer"
+            >
+                CANCEL
+            </button>
+
+            <button
+                type="button"
+                onclick="submitEditForm()"
+                class="flex-1
+                       bg-[#101d33]
+                       text-white
+                       px-4 py-2
+                       text-[10px]
+                       tracking-widest
+                       hover:bg-[#1c2d48]
+                       transition
+                       cursor-pointer"
+            >
+                CONFIRM
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openConfirmModal() {
+        const form = document.getElementById('editBookForm');
+        if (!form.reportValidity()) {
+            return;
+        }
+        document.getElementById('confirmModal').classList.remove('hidden');
+    }
+
+    function closeConfirmModal() {
+        document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    function submitEditForm() {
+        document.getElementById('editBookForm').submit();
+    }
+
+    // Handle form submit (e.g. if Enter key is pressed in an input)
+    document.getElementById('editBookForm')?.addEventListener('submit', function(event) {
+        event.preventDefault();
+        openConfirmModal();
+    });
+
+    // Close modal when clicking outside
+    document.getElementById('confirmModal')?.addEventListener('click', function(event) {
+        if (event.target === this) {
+            closeConfirmModal();
+        }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeConfirmModal();
+        }
+    });
+</script>
 
 @endsection

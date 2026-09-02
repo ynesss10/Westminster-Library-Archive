@@ -15,11 +15,11 @@
             </p>
 
             <h1 class="font-serif text-4xl text-[#101d33] font-normal">
-                Manage Books.
+                Manage Books
             </h1>
 
             <p class="text-sm text-gray-500 mt-3 max-w-xl">
-                Manage the WestMinster Library collection,
+                Manage the Westminster Library collection,
                 including books, authors, categories, and stock.
             </p>
         </div>
