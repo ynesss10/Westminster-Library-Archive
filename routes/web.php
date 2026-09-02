@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/books/{book}/request', [UserBorrowingController::class, 'request'])
         ->name('borrowings.request');
 
+    Route::post('/books/{book}/borrow', [UserBorrowingController::class, 'borrow'])
+        ->name('borrowings.borrow');
+
     Route::get('/archive', [ArchiveController::class, 'index'])
         ->name('archive.index');
 

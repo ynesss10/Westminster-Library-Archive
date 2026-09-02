@@ -6,35 +6,65 @@
 
     <h1>Books</h1>
 
-<form action="{{ route('books.index') }}" method="GET">
+    @if (session('success'))
+        <div>
+            {{ session('success') }}
+        </div>
+    @endif
 
-    <input
-        type="text"
-        name="search"
-        value="{{ request('search') }}"
-        placeholder="Cari buku..."
-    >
+    @if (session('error'))
+        <div>
+            {{ session('error') }}
+        </div>
+    @endif
 
-    <button type="submit">
-        Cari
-    </button>
+    <form action="{{ route('books.index') }}" method="GET">
 
-</form>
+        <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari buku...">
 
-@foreach($books as $book)
+        <button type="submit">
+            Cari
+        </button>
 
-    <div>
-        <h2>{{ $book->title }}</h2>
-        <p>{{ $book->author }}</p>
+    </form>
 
-        <a href="{{ route('books.show', $book) }}">
-            Lihat Detail
-        </a>
-    </div>
+    @foreach ($books as $book)
 
-@endforeach
+        <div>
+            <h2>{{ $book->title }}</h2>
+
+            <p>
+                Penulis: {{ $book->author }}
+            </p>
+
+            <p>
+                Stok: {{ $book->physical_stock }}
+            </p>
+
+            <a href="{{ route('books.show', $book) }}">
+                Lihat Detail
+            </a>
+
+            @if ($book->physical_stock > 0)
+
+                <form action="{{ route('borrowings.borrow', $book) }}" method="POST">
+                    @csrf
+
+                    <button type="submit">
+                        Pinjam Buku
+                    </button>
+                </form>
+
+            @else
+
+                <p>Stok buku habis.</p>
+
+            @endif
+        </div>
+
+    @endforeach
 
 
-{{ $books->links() }}
+    {{ $books->links() }}
 
 @endsection

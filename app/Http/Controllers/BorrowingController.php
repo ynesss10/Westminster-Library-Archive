@@ -35,4 +35,42 @@ class BorrowingController extends Controller
             'Request peminjaman berhasil dikirim.'
         );
     }
+
+    public function borrow(Book $book)
+    {
+        $existingBorrowing = Borrowing::where('user_id', auth()->id())
+            ->where('book_id', $book->id)
+            ->whereIn('status', ['pending', 'approved', 'borrowed'])
+            ->exists();
+
+        if ($existingBorrowing) {
+            return back()->with(
+                'error',
+                'Buku ini masih memiliki peminjaman aktif.'
+            );
+        }
+
+        if ($book->physical_stock <= 0) {
+            return back()->with(
+                'error',
+                'Stok buku sedang habis.'
+            );
+        }
+
+        Borrowing::create([
+            'user_id' => auth()->id(),
+            'book_id' => $book->id,
+            'borrowing_date' => now()->toDateString(),
+            'due_date' => now()->addDays(7)->toDateString(),
+            'return_date' => null,
+            'status' => 'borrowed',
+        ]);
+
+        $book->decrement('physical_stock');
+
+        return back()->with(
+            'success',
+            'Buku berhasil dipinjam.'
+        );
+    }
 }
