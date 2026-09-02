@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
@@ -12,7 +11,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-[#f7f4ef] text-gray-800 font-sans antialiased">
 
     @include('layouts.partials.header')
 
@@ -23,5 +22,4 @@
     @include('layouts.partials.footer')
 
 </body>
-
 </html>
