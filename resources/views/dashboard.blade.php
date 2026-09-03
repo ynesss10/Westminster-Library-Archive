@@ -21,9 +21,9 @@
             </p>
 
             <div class="flex gap-4 flex-wrap">
-                <a href="{{ url('/borrowings') }}"
-                   class="bg-navy hover:bg-[#241a5c] transition text-white px-6 py-3 rounded-md font-medium">
-                    View My Borrowings
+                <a href="{{ url('/library') }}"
+                  class="bg-navy hover:bg-[#241a5c] transition text-white px-6 py-3 rounded-md font-medium">
+                  Library
                 </a>
 
                 <a href="{{ url('/books') }}"
@@ -42,25 +42,6 @@
 
         <div class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
 
-            {{-- CARD: My Borrowings --}}
-            <div class="min-w-70 md:min-w-[calc((100%-3rem)/3)] snap-start bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
-                <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=600"
-                     alt="Borrowings"
-                     class="w-full h-48 object-cover">
-
-                <div class="p-6 flex flex-col flex-1">
-                    <h3 class="font-serif text-2xl text-navy mb-2">My Borrowings</h3>
-                    <p class="text-gray-600 mb-4">
-                        View your active and previous book borrowings.
-                    </p>
-
-                    <a href="{{ url('/borrowings') }}"
-                       class="mt-auto inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all">
-                        EXPLORE 
-                    </a>
-                </div>
-            </div>
-
             {{-- CARD: Books --}}
             <div class="min-w-70 md:min-w-[calc((100%-3rem)/3)] snap-start bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
                 <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600"
@@ -68,7 +49,7 @@
                      class="w-full h-48 object-cover">
 
                 <div class="p-6 flex flex-col flex-1">
-                    <h3 class="font-serif text-2xl text-navy mb-2">Books</h3>
+                    <h3 class="font-serif text-2xl text-navy mb-2">Library</h3>
                     <p class="text-gray-600 mb-4">
                         Explore, read, and borrow modern and historical books.
                     </p>
@@ -111,7 +92,7 @@
                         Plan your physical visit and explore the Westminster collection.
                     </p>
 
-                    <a href="{{ url('/') }}"
+                    <a href="{{ url('/visits') }}"
                        class="mt-auto inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all">
                         EXPLORE  
                     </a>
