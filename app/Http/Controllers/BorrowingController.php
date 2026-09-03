@@ -7,6 +7,16 @@ use App\Models\Borrowing;
 
 class BorrowingController extends Controller
 {
+    public function index()
+    {
+        $borrowings = Borrowing::with('book')
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
+
+        return view('borrowings.index', compact('borrowings'));
+    }
+
     public function request(Book $book)
     {
         $existingBorrowing = Borrowing::where('user_id', auth()->id())
@@ -71,6 +81,32 @@ class BorrowingController extends Controller
         return back()->with(
             'success',
             'Buku berhasil dipinjam.'
+        );
+    }
+
+    public function returnBook(Borrowing $borrowing)
+    {
+        if ($borrowing->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        if (!in_array($borrowing->status, ['approved', 'borrowed'])) {
+            return back()->with(
+                'error',
+                'Buku tidak dapat dikembalikan.'
+            );
+        }
+
+        $borrowing->update([
+            'status' => 'returned',
+            'return_date' => now()->toDateString(),
+        ]);
+
+        $borrowing->book->increment('physical_stock');
+
+        return back()->with(
+            'success',
+            'Buku berhasil dikembalikan.'
         );
     }
 }
