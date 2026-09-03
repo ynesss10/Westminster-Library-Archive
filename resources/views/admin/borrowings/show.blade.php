@@ -1,67 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Peminjaman - WestMinster Admin</title>
-</head>
+@section('title', 'Detail Peminjaman')
 
-<body>
+@section('content')
 
     <h1>Detail Peminjaman</h1>
 
-    <a href="{{ route('admin.borrowings.index') }}">
-        Kembali ke Peminjaman
-    </a>
+    @if(session('success'))
+        <div>
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div>
+            {{ session('error') }}
+        </div>
+    @endif
 
     <hr>
 
-    <p>
-        <strong>ID Peminjaman:</strong>
-        {{ $borrowing->id }}
-    </p>
+    <h2>{{ $borrowing->book->title }}</h2>
 
     <p>
-        <strong>User:</strong>
+        User:
         {{ $borrowing->user->name }}
     </p>
 
     <p>
-        <strong>Email:</strong>
+        Email:
         {{ $borrowing->user->email }}
     </p>
 
     <p>
-        <strong>Buku:</strong>
-        {{ $borrowing->book->title }}
-    </p>
-
-    <p>
-        <strong>Penulis:</strong>
-        {{ $borrowing->book->author }}
-    </p>
-
-    <p>
-        <strong>Tanggal Pinjam:</strong>
+        Tanggal Peminjaman:
         {{ $borrowing->borrowing_date }}
     </p>
 
     <p>
-        <strong>Jatuh Tempo:</strong>
+        Jatuh Tempo:
         {{ $borrowing->due_date ?? '-' }}
     </p>
 
     <p>
-        <strong>Tanggal Kembali:</strong>
+        Tanggal Pengembalian:
         {{ $borrowing->return_date ?? '-' }}
     </p>
 
     <p>
-        <strong>Status:</strong>
+        Status:
         {{ $borrowing->status }}
     </p>
 
-</body>
+    <hr>
 
-</html>
+    @if($borrowing->status === 'pending')
+
+        <form
+            action="{{ route('admin.borrowings.approve', $borrowing) }}"
+            method="POST"
+        >
+            @csrf
+
+            <button type="submit">
+                Approve
+            </button>
+        </form>
+
+        <br>
+
+        <form
+            action="{{ route('admin.borrowings.reject', $borrowing) }}"
+            method="POST"
+        >
+            @csrf
+
+            <button type="submit">
+                Reject
+            </button>
+        </form>
+
+    @elseif(in_array($borrowing->status, ['approved', 'borrowed']))
+
+        <form
+            action="{{ route('admin.borrowings.return', $borrowing) }}"
+            method="POST"
+        >
+            @csrf
+
+            <button type="submit">
+                Proses Pengembalian
+            </button>
+        </form>
+
+    @elseif($borrowing->status === 'returned')
+
+        <p>
+            Buku sudah dikembalikan.
+        </p>
+
+    @elseif($borrowing->status === 'rejected')
+
+        <p>
+            Peminjaman ditolak.
+        </p>
+
+    @endif
+
+    <br>
+
+    <a href="{{ route('admin.borrowings.index') }}">
+        Kembali ke Daftar Peminjaman
+    </a>
+
+@endsection
