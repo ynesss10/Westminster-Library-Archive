@@ -29,13 +29,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/books/{book}/request', [UserBorrowingController::class, 'request'])
         ->name('borrowings.request');
 
+    Route::post('/books/{book}/borrow', [UserBorrowingController::class, 'borrow'])
+        ->name('borrowings.borrow');
+
     Route::get('/archive', [ArchiveController::class, 'index'])
         ->name('archive.index');
 
-    Route::get('/borrowings', function () {
-        return view('borrowings.index');
-    })->name('borrowings.index');
+    Route::get('/borrowings', [UserBorrowingController::class, 'index'])
+        ->name('borrowings.index');
 
+    Route::post('/borrowings/{borrowing}/return', [UserBorrowingController::class, 'returnBook'])
+        ->name('borrowings.return');
 });
 
 
