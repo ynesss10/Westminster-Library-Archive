@@ -6,6 +6,14 @@
 
 <div class="container">
 
+    @if (session('success'))
+        <p>{{ session('success') }}</p>
+    @endif
+
+    @if (session('error'))
+        <p>{{ session('error') }}</p>
+    @endif
+
     @if($book->cover)
         <img
             src="{{ asset('storage/' . $book->cover) }}"
@@ -43,9 +51,13 @@
     @endif
 
     @if($book->physical_stock > 0)
-        <button type="button">
-            Pinjam Buku
-        </button>
+        <form action="{{ route('borrowings.borrow', $book) }}" method="POST">
+            @csrf
+
+            <button type="submit">
+                Pinjam Buku
+            </button>
+        </form>
     @else
         <p>Stok buku fisik sedang habis.</p>
     @endif

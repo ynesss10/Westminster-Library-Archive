@@ -66,7 +66,7 @@
             @forelse ($books as $book)
                 <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
                     <a href="{{ route('books.show', $book) }}">
-                        <img src="{{ $book->cover_url ?? 'https://via.placeholder.com/300x400' }}"
+                        <img src="{{ $book->cover ? asset('storage/' . $book->cover) : 'https://via.placeholder.com/300x400' }}"
                              alt="{{ $book->title }}"
                              class="w-full h-56 object-cover">
                     </a>
