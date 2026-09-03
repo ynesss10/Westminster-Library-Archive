@@ -38,17 +38,31 @@
                 Category: {{ $book->category }}
             </p>
 
+            <p>
+                Stok Fisik: {{ $book->physical_stock }}
+            </p>
+
             <a href="{{ route('books.show', $book) }}">
                 Baca Digital
             </a>
 
-            <form action="{{ route('borrowings.request', $book) }}" method="POST">
-                @csrf
+            @if($book->physical_stock > 0)
 
-                <button type="submit">
-                    Request Pinjam
-                </button>
-            </form>
+                <form action="{{ route('borrowings.request', $book) }}" method="POST">
+                    @csrf
+
+                    <button type="submit">
+                        Request Pinjam
+                    </button>
+                </form>
+
+            @else
+
+                <p>
+                    Stok buku sedang habis.
+                </p>
+
+            @endif
 
         </div>
 

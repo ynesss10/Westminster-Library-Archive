@@ -35,10 +35,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/archive', [ArchiveController::class, 'index'])
         ->name('archive.index');
 
-    Route::get('/borrowings', function () {
-        return view('borrowings.index');
-    })->name('borrowings.index');
+    Route::get('/borrowings', [UserBorrowingController::class, 'index'])
+        ->name('borrowings.index');
 
+    Route::post('/borrowings/{borrowing}/return', [UserBorrowingController::class, 'returnBook'])
+        ->name('borrowings.return');
 });
 
 
