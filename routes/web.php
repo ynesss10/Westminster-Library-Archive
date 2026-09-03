@@ -50,4 +50,13 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::resource('borrowings', BorrowingController::class)
             ->only(['index', 'show']);
+
+        Route::post('/borrowings/{borrowing}/approve', [BorrowingController::class, 'approve'])
+            ->name('borrowings.approve');
+
+        Route::post('/borrowings/{borrowing}/reject', [BorrowingController::class, 'reject'])
+            ->name('borrowings.reject');
+
+        Route::post('/borrowings/{borrowing}/return', [BorrowingController::class, 'returnBook'])
+            ->name('borrowings.return');
     });
