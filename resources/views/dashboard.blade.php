@@ -21,9 +21,9 @@
             </p>
 
             <div class="flex gap-4 flex-wrap">
-                <a href="{{ url('/library') }}"
+                <a href="{{ url('/archive') }}"
                   class="bg-navy hover:bg-[#241a5c] transition text-white px-6 py-3 rounded-md font-medium">
-                  Library
+                  Browse Archive
                 </a>
 
                 <a href="{{ url('/books') }}"

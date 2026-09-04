@@ -21,7 +21,10 @@ class BookController extends Controller
             });
         }
 
-        $books = $query->latest()->paginate(12);
+        $books = $query->where('is_archive', false)
+            ->latest()
+            ->paginate(12)
+            ->withQueryString();
 
         return view('books.index', compact('books'));
     }
