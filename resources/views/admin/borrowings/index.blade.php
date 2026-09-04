@@ -16,7 +16,7 @@
             <div>
 
                 <p class="mb-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#b18443]">
-                    Administration
+                   Library Administration
                 </p>
 
                 <h1 class="font-serif text-4xl md:text-5xl leading-tight text-[#18243a]">
@@ -29,26 +29,6 @@
                 </p>
 
             </div>
-
-
-            {{-- Back Button --}}
-            <a href="{{ route('admin.dashboard') }}"
-               class="inline-flex w-fit items-center gap-2
-                      border border-[#bdb9b0]
-                      bg-white px-5 py-2.5
-                      text-xs text-[#243b63]
-                      transition
-                      hover:border-[#243b63]
-                      hover:bg-[#243b63]
-                      hover:text-white">
-
-                <span class="text-base leading-none">
-                    ←
-                </span>
-
-                Kembali ke Dashboard
-
-            </a>
 
         </div>
 
@@ -148,10 +128,6 @@
 
                 </div>
 
-                <span class="text-[10px] font-medium uppercase tracking-[0.15em] text-[#b18443]">
-                    {{ $borrowings->count() }} Records
-                </span>
-
             </div>
 
 
@@ -211,7 +187,7 @@
 
                                 {{-- ID --}}
                                 <td class="px-6 py-5 text-sm text-[#777168]">
-                                    {{ str_pad($borrowing->id, 3, '0', STR_PAD_LEFT) }}
+                                    {{ $borrowing->id }}
                                 </td>
 
 
@@ -348,6 +324,22 @@
 
                                         </span>
 
+                                    @elseif($borrowing->status === 'rejected')
+
+                                        <span class="inline-flex items-center gap-1.5
+                                                     bg-red-50
+                                                     px-3 py-1
+                                                     text-[10px]
+                                                     uppercase
+                                                     tracking-wide
+                                                     text-red-600">
+
+                                            <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+
+                                            Ditolak
+
+                                        </span>
+
                                     @else
 
                                         <span class="inline-flex items-center gap-1.5
@@ -379,9 +371,7 @@
 
                                         Detail
 
-                                        <span class="text-[#b18443]">
-                                            →
-                                        </span>
+                              
 
                                     </a>
 
@@ -435,7 +425,7 @@
                             <div>
 
                                 <p class="text-[9px] uppercase tracking-[0.14em] text-[#aaa49b]">
-                                    Peminjaman #{{ str_pad($borrowing->id, 3, '0', STR_PAD_LEFT) }}
+                                    Peminjaman #{{ $borrowing->id }}
                                 </p>
 
                                 <h3 class="mt-1 font-serif text-lg text-[#18243a]">
@@ -462,6 +452,12 @@
 
                                 <span class="shrink-0 bg-[#f5e8e4] px-2.5 py-1 text-[9px] uppercase tracking-wide text-[#985b4b]">
                                     Terlambat
+                                </span>
+
+                            @elseif($borrowing->status === 'rejected')
+
+                                <span class="shrink-0 bg-red-50 px-2.5 py-1 text-[9px] uppercase tracking-wide text-red-600">
+                                    Ditolak
                                 </span>
 
                             @else

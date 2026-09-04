@@ -4,15 +4,27 @@
 
 @section('content')
 
-<div class="min-h-screen bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-        <div class="mb-6">
-            <h1 class="text-3xl font-bold text-gray-900 mb-4">Manajemen User</h1>
-            <a href="{{ route('admin.dashboard') }}" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                ← Kembali Ke Dashboard
-            </a>
+   <div class="min-h-screen bg-white">
 
-        </div>
+    <section class="max-w-7xl mx-auto px-6 lg:px-10 pt-12 pb-8">
+
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6"></div>
+      
+       <div>
+
+                <p class="mb-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#b18443]">
+                   Library Administration
+                </p>
+
+                <h1 class="font-serif text-4xl md:text-5xl leading-tight text-[#18243a]">
+                    Manajemen User
+                </h1>
+
+                <p class="mt-3 max-w-xl text-sm leading-relaxed text-[#777168]">
+               Mengelola akun pengguna yang terdaftar dalam sistem, termasuk administrator dan anggota.
+                </p>
+
+            </div>
 
     </section>
 
@@ -115,10 +127,6 @@
                     </p>
 
                 </div>
-
-                <span class="text-[10px] font-medium uppercase tracking-[0.15em] text-[#b18443]">
-                    {{ $users->count() }} Records
-                </span>
 
             </div>
 
