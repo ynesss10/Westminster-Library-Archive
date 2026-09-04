@@ -10,7 +10,7 @@ class BorrowingController extends Controller
     public function index()
     {
         $borrowings = Borrowing::with(['user', 'book'])
-            ->latest()
+            ->oldest()
             ->get();
 
         return view('admin.borrowings.index', compact('borrowings'));

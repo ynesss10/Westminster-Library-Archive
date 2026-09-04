@@ -8,7 +8,9 @@ class ArchiveController extends Controller
 {
     public function index()
     {
-        $books = Book::latest()->get();
+        $books = Book::where('is_archive', true)
+            ->latest()
+            ->get();
 
         return view('archive.index', compact('books'));
     }
