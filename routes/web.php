@@ -35,6 +35,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/archive', [ArchiveController::class, 'index'])
         ->name('archive.index');
 
+    Route::view('/visit', 'visit')
+        ->name('visit');
+
+    Route::view('/about', 'about')
+        ->name('about');
+
     Route::get('/borrowings', [UserBorrowingController::class, 'index'])
         ->name('borrowings.index');
 

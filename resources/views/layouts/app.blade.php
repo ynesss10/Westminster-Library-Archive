@@ -11,15 +11,23 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-white text-gray-800 font-sans antialiased"></body>
+<body class="bg-white font-sans text-gray-800 antialiased">
 
-    @include('layouts.partials.header')
+    @if (auth()->check() && auth()->user()->role === 'admin')
+        @include('layouts.partials.admin.header')
+    @else
+        @include('layouts.partials.user.header')
+    @endif
 
     <main>
         @yield('content')
     </main>
 
-    @include('layouts.partials.footer')
+    @if (auth()->check() && auth()->user()->role === 'admin')
+        @include('layouts.partials.admin.footer')
+    @else
+        @include('layouts.partials.user.footer')
+    @endif
 
 </body>
 </html>
