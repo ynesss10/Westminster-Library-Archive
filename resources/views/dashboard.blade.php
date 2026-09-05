@@ -6,10 +6,10 @@
 
     {{-- HERO SECTION --}}
     <section class="relative bg-cover bg-center text-white py-24 px-6 md:px-16 overflow-hidden"
-             style="background-image: linear-gradient(rgba(27, 20, 64, 0.82), rgba(27, 20, 64, 0.68)), url('{{ asset('images/register-bg.jpg') }}');">
+             style="background-image: linear-gradient(rgba(27, 20, 64, 0.82), rgba(27, 20, 64, 0.68)), url('{{ asset('images/cina.jpeg') }}');">
         <div class="relative z-10 max-w-2xl">
             <p class="uppercase tracking-widest text-gold font-medium mb-4">
-                Dashboard
+                Library & Museum
             </p>
 
             <h1 class="font-serif text-4xl md:text-5xl leading-tight mb-4">
@@ -21,14 +21,14 @@
             </p>
 
             <div class="flex gap-4 flex-wrap">
-                <a href="{{ url('/archive') }}"
+                <a href="{{ url('/books') }}"
                   class="bg-navy hover:bg-[#241a5c] transition text-white px-6 py-3 rounded-md font-medium">
-                  Browse Archive
+                  Explore the Library
                 </a>
 
                 <a href="{{ url('/books') }}"
                    class="border border-white text-white hover:bg-white hover:text-navy transition px-6 py-3 rounded-md font-medium">
-                    Browse Books
+                    Explore the Library
                 </a>
             </div>
         </div>
