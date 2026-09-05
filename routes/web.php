@@ -20,6 +20,9 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::view('/profile', 'profile')
+        ->name('profile');
+
     Route::get('/books', [BookController::class, 'index'])
         ->name('books.index');
 

@@ -15,15 +15,9 @@
             </div>
 
             @auth
-                <form method="POST" action="{{ route('logout') }}" class="inline">
-                    @csrf
-                    <button type="submit" class="inline-flex cursor-pointer items-center gap-2 rounded-full bg-red-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-red-700">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
-                        Logout
-                    </button>
-                </form>
+                <a href="{{ route('profile') }}" aria-label="Open profile" title="Profile" class="flex h-10 w-10 items-center justify-center rounded-full bg-[#D6A84F] text-sm font-bold text-[#16213A] transition hover:bg-[#e2bc6d]">
+                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                </a>
             @endauth
         </nav>
     </div>
