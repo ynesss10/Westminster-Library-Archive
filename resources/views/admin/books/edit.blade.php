@@ -215,6 +215,34 @@
                     </div>
 
 
+                    {{-- Book Location --}}
+                    <div>
+
+                        <label
+                            for="is_archive"
+                            class="block text-[10px] tracking-widest uppercase text-gray-600 mb-2"
+                        >
+                            Lokasi Buku
+                        </label>
+
+                        <select
+                            id="is_archive"
+                            name="is_archive"
+                            required
+                            class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#101d33] outline-none focus:border-[#101d33] transition"
+                        >
+                            <option value="0" {{ old('is_archive', $book->is_archive) == 0 ? 'selected' : '' }}>
+                                Books
+                            </option>
+
+                            <option value="1" {{ old('is_archive', $book->is_archive) == 1 ? 'selected' : '' }}>
+                                Archive
+                            </option>
+                        </select>
+
+                    </div>
+
+
                     {{-- Stock --}}
                     <div>
 

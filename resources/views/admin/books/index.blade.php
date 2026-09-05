@@ -131,6 +131,10 @@
                     </th>
 
                     <th class="px-5 py-4 text-[10px] tracking-widest text-gray-600 uppercase text-center">
+                        Location
+                    </th>
+
+                    <th class="px-5 py-4 text-[10px] tracking-widest text-gray-600 uppercase text-center">
                         Stock
                     </th>
 
@@ -211,6 +215,26 @@
                                 {{ $book->category }}
 
                             </span>
+
+                        </td>
+
+
+                        {{-- Location --}}
+                        <td class="px-5 py-3 text-center">
+
+                            @if($book->is_archive)
+
+                                <span class="inline-block bg-[#f1eee8] text-[#101d33] px-3 py-1 text-[10px] tracking-wider uppercase">
+                                    Archive
+                                </span>
+
+                            @else
+
+                                <span class="inline-block bg-green-50 text-green-700 px-3 py-1 text-[10px] tracking-wider uppercase">
+                                    Books
+                                </span>
+
+                            @endif
 
                         </td>
 
@@ -296,7 +320,7 @@
 
                     <tr>
 
-                        <td colspan="6" class="px-5 py-16 text-center">
+                        <td colspan="7" class="px-5 py-16 text-center">
 
                             <p class="font-serif text-xl text-[#101d33]">
                                 No books found.

@@ -46,6 +46,7 @@ class BookController extends Controller
             'physical_stock' => ['required', 'integer', 'min:0'],
             'cover' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'digital_file' => ['nullable', 'file', 'mimes:pdf', 'max:20480'],
+            'is_archive' => 'required|boolean',
         ]);
 
         if ($request->hasFile('cover')) {
@@ -88,6 +89,7 @@ class BookController extends Controller
             'physical_stock' => ['required', 'integer', 'min:0'],
             'cover' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'digital_file' => ['nullable', 'file', 'mimes:pdf', 'max:20480'],
+            'is_archive' => 'required|boolean',
         ]);
 
         if ($request->hasFile('cover')) {

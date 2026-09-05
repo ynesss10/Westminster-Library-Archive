@@ -19,6 +19,13 @@ class BorrowingController extends Controller
 
     public function request(Book $book)
     {
+        if (!$book->is_archive) {
+            return back()->with(
+                'error',
+                'Buku ini tidak menggunakan sistem request.'
+            );
+        }
+
         $existingBorrowing = Borrowing::where('user_id', auth()->id())
             ->where('book_id', $book->id)
             ->whereIn('status', ['pending', 'approved', 'borrowed'])
@@ -48,6 +55,13 @@ class BorrowingController extends Controller
 
     public function borrow(Book $book)
     {
+        if ($book->is_archive) {
+            return back()->with(
+                'error',
+                'Buku Archive harus melalui request peminjaman.'
+            );
+        }
+
         $existingBorrowing = Borrowing::where('user_id', auth()->id())
             ->where('book_id', $book->id)
             ->whereIn('status', ['pending', 'approved', 'borrowed'])

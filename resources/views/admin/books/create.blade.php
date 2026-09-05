@@ -4,139 +4,103 @@
 
 @section('content')
 
-<div class="container">
+    <div class="container">
 
-    <h1>Tambah Buku</h1>
+        <h1>Tambah Buku</h1>
 
-    @if($errors->any())
-        <div>
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+        @if($errors->any())
+            <div>
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    <form
-        action="{{ route('admin.books.store') }}"
-        method="POST"
-        enctype="multipart/form-data"
-    >
+        <form action="{{ route('admin.books.store') }}" method="POST" enctype="multipart/form-data">
 
-        @csrf
+            @csrf
 
-        <div>
-            <label>Judul Buku</label>
+            <div>
+                <label>Judul Buku</label>
 
-            <input
-                type="text"
-                name="title"
-                value="{{ old('title') }}"
-                required
-            >
-        </div>
+                <input type="text" name="title" value="{{ old('title') }}" required>
+            </div>
 
-        <div>
-            <label>Penulis</label>
+            <div>
+                <label>Penulis</label>
 
-            <input
-                type="text"
-                name="author"
-                value="{{ old('author') }}"
-                required
-            >
-        </div>
+                <input type="text" name="author" value="{{ old('author') }}" required>
+            </div>
 
-        <div>
-            <label>Penerbit</label>
+            <div>
+                <label>Penerbit</label>
 
-            <input
-                type="text"
-                name="publisher"
-                value="{{ old('publisher') }}"
-            >
-        </div>
+                <input type="text" name="publisher" value="{{ old('publisher') }}">
+            </div>
 
-        <div>
-            <label>Tahun Terbit</label>
+            <div>
+                <label>Tahun Terbit</label>
 
-            <input
-                type="number"
-                name="publication_year"
-                value="{{ old('publication_year') }}"
-            >
-        </div>
+                <input type="number" name="publication_year" value="{{ old('publication_year') }}">
+            </div>
 
-        <div>
-            <label>ISBN</label>
+            <div>
+                <label>ISBN</label>
 
-            <input
-                type="text"
-                name="isbn"
-                value="{{ old('isbn') }}"
-            >
-        </div>
+                <input type="text" name="isbn" value="{{ old('isbn') }}">
+            </div>
 
-        <div>
-            <label>Kategori</label>
+            <div>
+                <label>Kategori</label>
 
-            <input
-                type="text"
-                name="category"
-                value="{{ old('category') }}"
-                required
-            >
-        </div>
+                <input type="text" name="category" value="{{ old('category') }}" required>
+            </div>
 
-        <div>
-            <label>Deskripsi</label>
+            <div>
+                <label>Deskripsi</label>
 
-            <textarea name="description">{{ old('description') }}</textarea>
-        </div>
+                <textarea name="description">{{ old('description') }}</textarea>
+            </div>
 
-        <div>
-            <label>Stok Buku Fisik</label>
+            <div>
+                <label>Stok Buku Fisik</label>
 
-            <input
-                type="number"
-                name="physical_stock"
-                value="{{ old('physical_stock', 0) }}"
-                min="0"
-                required
-            >
-        </div>
+                <input type="number" name="physical_stock" value="{{ old('physical_stock', 0) }}" min="0" required>
+            </div>
 
-        <div>
-            <label>Cover Buku</label>
+            <div>
+                <label>Cover Buku</label>
 
-            <input
-                type="file"
-                name="cover"
-                accept=".jpg,.jpeg,.png,.webp"
-            >
-        </div>
+                <input type="file" name="cover" accept=".jpg,.jpeg,.png,.webp">
+            </div>
 
-        <div>
-            <label>File Buku Digital</label>
+            <div>
+                <label>File Buku Digital</label>
 
-            <input
-                type="file"
-                name="digital_file"
-                accept=".pdf"
-            >
-        </div>
+                <input type="file" name="digital_file" accept=".pdf">
+            </div>
 
-        <button type="submit">
-            Simpan Buku
-        </button>
+            <div>
+                <label for="is_archive">Lokasi Buku</label>
 
-        <a href="{{ route('admin.books.index') }}">
-            Batal
-        </a>
+                <select name="is_archive" id="is_archive" required>
+                    <option value="0">Books</option>
+                    <option value="1">Archive</option>
+                </select>
+            </div>
 
-    </form>
+            <button type="submit">
+                Simpan Buku
+            </button>
 
-</div>
+            <a href="{{ route('admin.books.index') }}">
+                Batal
+            </a>
+
+        </form>
+
+    </div>
 
 @endsection

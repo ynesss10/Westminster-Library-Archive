@@ -17,6 +17,7 @@ class Book extends Model
         'cover',
         'digital_file',
         'physical_stock',
+        'is_archive',
     ];
     public function borrowings()
     {

@@ -20,6 +20,9 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::view('/profile', 'profile')
+        ->name('profile');
+
     Route::get('/books', [BookController::class, 'index'])
         ->name('books.index');
 
@@ -34,6 +37,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/archive', [ArchiveController::class, 'index'])
         ->name('archive.index');
+
+    Route::view('/visit', 'visit')
+        ->name('visit');
+
+    Route::view('/about', 'about')
+        ->name('about');
 
     Route::get('/borrowings', [UserBorrowingController::class, 'index'])
         ->name('borrowings.index');
@@ -58,4 +67,13 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::resource('borrowings', BorrowingController::class)
             ->only(['index', 'show']);
+
+        Route::post('/borrowings/{borrowing}/approve', [BorrowingController::class, 'approve'])
+            ->name('borrowings.approve');
+
+        Route::post('/borrowings/{borrowing}/reject', [BorrowingController::class, 'reject'])
+            ->name('borrowings.reject');
+
+        Route::post('/borrowings/{borrowing}/return', [BorrowingController::class, 'returnBook'])
+            ->name('borrowings.return');
     });
