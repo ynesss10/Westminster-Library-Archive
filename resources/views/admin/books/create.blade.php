@@ -64,6 +64,7 @@
 
                 <div class="bg-white border border-gray-200">
 
+                    <div class="px-7 py-6 border-b border-gray-200">
                     <div class="bg-[#f1eee8] px-7 py-6 border-b border-gray-200">
                         <p class="text-[#c3a064] text-[10px] tracking-[0.3em] uppercase mb-2">
                             Book Information
@@ -192,6 +193,7 @@
                 {{-- Stock --}}
                 <div class="bg-white border border-gray-200">
 
+                    <div class="px-6 py-5 border-b border-gray-200">
                     <div class="bg-[#f1eee8] px-6 py-5 border-b border-gray-200">
                         <p class="text-[#c3a064] text-[10px] tracking-[0.3em] uppercase">
                             Collection
