@@ -244,7 +244,7 @@ Westminster menggunakan database untuk menyimpan berbagai data yang dibutuhkan d
 | Meminjam Buku | ✓ | - |
 | Request Buku Archive | ✓ | - |
 | Melihat Peminjaman | ✓ | ✓ |
-| Mengembalikan Buku | ✓ | ✓ |
+| Mengembalikan Buku | - | ✓ |
 | Melihat Profile | ✓ | - |
 | Mengelola Buku | - | ✓ |
 | Mengelola User | - | ✓ |
