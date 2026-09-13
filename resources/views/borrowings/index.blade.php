@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <section class="bg-[#f7f4ef] px-6 md:px-16 py-12">
+    <section class="min-h-full bg-[#f7f4ef] px-6 py-12 md:min-h-[calc(100vh-9rem)] md:px-16">
 
         <h1 class="font-serif text-3xl text-navy mb-6">
             My Borrowings
@@ -24,24 +24,24 @@
                 </div>
             @endif
 
-            {{-- REQUEST STATUS --}}
+            {{-- PENDING APPROVAL --}}
             <div class="bg-white rounded-lg shadow-sm p-6">
                 <h3 class="font-serif text-lg text-navy pb-3 mb-4 border-b border-gold/40">
                     Request Status
                 </h3>
 
                 <div class="flex flex-col divide-y divide-gray-100">
-                    @forelse ($requestStatuses ?? [] as $item)
+                    @forelse ($pendingBorrowings ?? [] as $item)
                         <div class="flex items-center justify-between py-3 text-sm">
                             <span class="text-navy">
                                 {{ $item->book->title ?? $item->title }} by {{ $item->book->author ?? $item->author }}
                             </span>
-                            <span class="{{ $item->status === 'rejected' ? 'text-red-500' : 'text-gold' }} font-medium whitespace-nowrap">
-                                {{ $item->status === 'rejected' ? 'Rejected' : 'Request Submitted' }} | {{ \Carbon\Carbon::parse($item->borrowing_date)->format('d/m/Y') }}
+                            <span class="text-gold font-medium whitespace-nowrap">
+                                Request Submitted | {{ \Carbon\Carbon::parse($item->borrowing_date)->format('d/m/Y') }}
                             </span>
                         </div>
                     @empty
-                        <p class="text-gray-400 text-sm py-3">Belum ada request peminjaman.</p>
+                        <p class="text-gray-400 text-sm py-3">Tidak ada permintaan yang menunggu persetujuan.</p>
                     @endforelse
                 </div>
             </div>
