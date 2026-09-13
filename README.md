@@ -1,58 +1,284 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Westminster Library Archive
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📌 Tentang Westminster
 
-## About Laravel
+**Westminster Library Archive** adalah aplikasi perpustakaan berbasis web yang dirancang untuk memudahkan pengguna dalam mencari, membaca, dan meminjam buku secara digital maupun fisik.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Westminster menyediakan dua jenis akses, yaitu **User** dan **Admin**. User dapat menjelajahi koleksi buku, mencari buku, membaca buku secara digital, melakukan peminjaman, melihat status peminjaman, dan mengembalikan buku.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Sementara itu, Admin memiliki akses untuk mengelola koleksi buku, data pengguna, serta proses peminjaman melalui sistem administrasi.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Westminster juga membagi koleksi menjadi **Books** dan **Archive**. Buku pada bagian Books dapat langsung dipinjam apabila stok tersedia, sedangkan buku pada Archive menggunakan sistem request yang perlu diproses oleh Admin.
 
-## Learning Laravel
+## 🎯 Tujuan
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Westminster dikembangkan dengan beberapa tujuan utama:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- 📚 **Mempermudah akses buku** — membantu pengguna menemukan dan mengakses koleksi perpustakaan dengan lebih mudah.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- 💻 **Digitalisasi perpustakaan** — menyediakan sistem perpustakaan berbasis web yang menggabungkan koleksi fisik dan digital.
 
-## Agentic Development
+- 🔎 **Mempermudah pencarian** — membantu pengguna menemukan buku yang dibutuhkan melalui katalog dan fitur pencarian.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- 📖 **Mendukung membaca digital** — memberikan akses untuk membaca buku dalam bentuk digital tanpa harus melakukan peminjaman fisik.
 
-```bash
-composer require laravel/boost --dev
+- 📋 **Pengelolaan lebih teratur** — membantu Admin mengelola buku, pengguna, stok, dan aktivitas peminjaman secara terpusat.
 
-php artisan boost:install
+## 👥 Target Pengguna
+
+### 👤 User
+
+User merupakan pengguna yang mengakses koleksi perpustakaan untuk membaca maupun meminjam buku.
+
+User dapat:
+
+- Melihat koleksi buku.
+- Mencari buku.
+- Melihat detail buku.
+- Membaca buku secara digital.
+- Meminjam buku fisik.
+- Mengirim request peminjaman buku Archive.
+- Melihat status peminjaman.
+- Mengembalikan buku.
+- Melihat riwayat peminjaman.
+- Melihat profil akun.
+
+### 🛡️ Admin
+
+Admin bertugas mengelola dan memantau aktivitas perpustakaan.
+
+Admin dapat:
+
+- Mengelola koleksi buku.
+- Menambahkan buku.
+- Mengedit data buku.
+- Menghapus buku.
+- Mengatur stok buku.
+- Mengelola file buku digital.
+- Mengelola data pengguna.
+- Melihat data peminjaman.
+- Melihat detail peminjaman.
+- Menyetujui request peminjaman.
+- Memproses pengembalian buku.
+
+## ✨ Fitur Utama
+
+### 📚 Katalog Buku
+
+Menampilkan koleksi buku yang tersedia pada sistem beserta informasi seperti judul, penulis, kategori, cover, dan ketersediaan stok.
+
+Pengguna dapat memilih buku untuk melihat informasi lebih lengkap melalui halaman detail.
+
+### 🔎 Pencarian Buku
+
+Pengguna dapat mencari buku melalui fitur pencarian untuk menemukan koleksi yang dibutuhkan dengan lebih cepat.
+
+### 📖 Digital Reading
+
+Buku yang tersedia dalam format digital dapat dibaca melalui aplikasi.
+
+Fitur ini memberikan alternatif bagi pengguna yang ingin membaca tanpa melakukan peminjaman buku fisik.
+
+### 📕 Peminjaman Buku
+
+Westminster menyediakan sistem peminjaman buku fisik dengan dua alur berbeda.
+
+**Books**
+
+Buku pada bagian Books dapat langsung dipinjam selama stok tersedia.
+
+```text
+Pilih Buku
+    ↓
+Pinjam Buku
+    ↓
+Borrowed
+    ↓
+Return
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+**Archive**
 
-## Contributing
+Buku pada bagian Archive menggunakan sistem request sebelum dapat dipinjam.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```text
+Pilih Buku
+    ↓
+Request Pinjam
+    ↓
+Pending
+    ↓
+Admin Approve
+    ↓
+Approved
+    ↓
+Borrowed
+    ↓
+Return
+```
 
-## Code of Conduct
+### 📋 My Borrowings
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+User dapat melihat daftar buku yang sedang atau pernah dipinjam.
 
-## Security Vulnerabilities
+Informasi yang tersedia meliputi:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Buku yang dipinjam
+- Status peminjaman
+- Tanggal peminjaman
+- Batas pengembalian
+- Tanggal pengembalian
 
-## License
+User juga dapat melakukan pengembalian buku melalui halaman ini.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 🛠️ Book Management
+
+Admin dapat mengelola koleksi buku, mulai dari menambahkan, mengedit, hingga menghapus buku.
+
+Admin juga dapat mengatur stok fisik, cover, file digital, serta menentukan apakah sebuah buku termasuk koleksi **Books** atau **Archive**.
+
+### 👥 User Management
+
+Admin dapat melihat dan mengelola data pengguna yang terdaftar pada sistem.
+
+### 📝 Borrowing Management
+
+Admin dapat memantau seluruh aktivitas peminjaman dan memproses request yang masuk.
+
+Admin dapat melihat detail peminjaman serta melakukan proses persetujuan dan pengembalian buku.
+
+## 🔄 Alur Peminjaman
+
+### Peminjaman Books
+
+```text
+Pilih Buku
+     ↓
+Cek Ketersediaan
+     ↓
+Pinjam Buku
+     ↓
+Status Borrowed
+     ↓
+Buku Dikembalikan
+     ↓
+Status Returned
+```
+
+### Peminjaman Archive
+
+```text
+Pilih Buku
+     ↓
+Request Peminjaman
+     ↓
+Status Pending
+     ↓
+Admin Memeriksa
+     ↓
+Request Disetujui
+     ↓
+Status Approved
+     ↓
+Buku Dipinjam
+     ↓
+Buku Dikembalikan
+     ↓
+Status Returned
+```
+
+## 🎨 Konsep UI/UX
+
+Westminster menggunakan konsep antarmuka yang **simple, clean, dan mudah digunakan** agar pengguna dapat berinteraksi dengan sistem tanpa merasa rumit.
+
+Beberapa konsep yang diterapkan:
+
+- 🧭 **Simple Navigation** — navigasi dibuat sederhana agar pengguna dapat berpindah halaman dengan mudah.
+- 📚 **Clear Book Information** — informasi buku disusun dengan jelas agar mudah dipahami.
+- 🎯 **Consistent Interface** — penggunaan komponen dan layout dibuat konsisten pada setiap halaman.
+- 👥 **Role-Based Interface** — tampilan dan fitur disesuaikan berdasarkan kebutuhan User dan Admin.
+- 📱 **Responsive Design** — tampilan dirancang agar tetap nyaman digunakan pada berbagai ukuran layar.
+
+## 🛠️ Teknologi yang Digunakan
+
+| Teknologi | Fungsi |
+|---|---|
+| **Laravel** | Framework utama untuk pengembangan aplikasi web |
+| **PHP** | Bahasa pemrograman backend |
+| **Laravel Fortify** | Authentication dan pengelolaan akun |
+| **Blade** | Template engine untuk tampilan |
+| **MySQL** | Penyimpanan dan pengelolaan database |
+| **HTML** | Struktur halaman |
+| **CSS** | Styling dan layout |
+| **JavaScript** | Interaksi pada halaman web |
+| **Vite** | Pengelolaan dan build asset frontend |
+| **GitHub** | Repository dan kolaborasi project |
+
+## 🗄️ Data yang Dikelola
+
+Westminster menggunakan database untuk menyimpan berbagai data yang dibutuhkan dalam sistem perpustakaan, seperti:
+
+- 👤 Data pengguna
+- 🔐 Role pengguna
+- 📚 Data buku
+- 🏷️ Kategori buku
+- 📦 Stok buku
+- 🖼️ Cover buku
+- 📖 File buku digital
+- 📝 Data peminjaman
+- 🔄 Status peminjaman
+- 📅 Tanggal peminjaman
+- 📅 Batas pengembalian
+- ✅ Tanggal pengembalian
+
+## 🔑 Hak Akses
+
+| Fitur | User | Admin |
+|---|:---:|:---:|
+| Register | ✓ | - |
+| Login | ✓ | ✓ |
+| Melihat Koleksi Buku | ✓ | ✓ |
+| Mencari Buku | ✓ | - |
+| Melihat Detail Buku | ✓ | ✓ |
+| Membaca Buku Digital | ✓ | - |
+| Meminjam Buku | ✓ | - |
+| Request Buku Archive | ✓ | - |
+| Melihat Peminjaman | ✓ | ✓ |
+| Mengembalikan Buku | ✓ | ✓ |
+| Melihat Profile | ✓ | - |
+| Mengelola Buku | - | ✓ |
+| Mengelola User | - | ✓ |
+| Mengelola Peminjaman | - | ✓ |
+| Approve Request | - | ✓ |
+
+## 🗓️ Timeline Pengembangan
+
+| Minggu | Kegiatan |
+|---|---|
+| **1-2** | Perencanaan konsep dan kebutuhan aplikasi |
+| **2-3** | Perancangan UI/UX dan struktur halaman |
+| **4-5** | Backend & Database menggunakan Laravel & MySQL |
+| **6-7** | Frontend & Integrasi menggunakan Tailwind CSS |
+| **8** | Testing, dan penyempurnaan aplikasi |
+
+## 🚀 Konsep Pengembangan
+
+Westminster dikembangkan dengan fokus pada tiga hal utama:
+
+**Accessible** — membuat koleksi perpustakaan lebih mudah diakses oleh pengguna.
+
+**Organized** — membuat pengelolaan buku dan proses peminjaman menjadi lebih terstruktur.
+
+**Digital** — menggabungkan koleksi fisik dengan pengalaman membaca buku secara digital dalam satu aplikasi.
+
+## 📖 Status Proyek
+
+> 🚧 **In Development**
+>
+> Westminster Library Archive merupakan project pengembangan aplikasi perpustakaan berbasis web yang dibuat untuk menerapkan konsep pengembangan aplikasi menggunakan Laravel, database relasional, authentication, authorization, CRUD, dan sistem peminjaman buku.
+
+---
+
+### 📚 Westminster Library Archive
+
+**Access. Read. Borrow.**
