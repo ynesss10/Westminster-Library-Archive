@@ -14,7 +14,13 @@ class BorrowingController extends Controller
             ->latest()
             ->get();
 
-        return view('borrowings.index', compact('borrowings'));
+        $requestStatuses = $borrowings->whereIn('status', ['pending', 'rejected']);
+        $activeBorrowings = $borrowings->whereIn('status', ['approved', 'borrowed']);
+
+        return view('borrowings.index', compact(
+            'requestStatuses',
+            'activeBorrowings'
+        ));
     }
 
     public function request(Book $book)

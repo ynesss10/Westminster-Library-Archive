@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/archive', [ArchiveController::class, 'index'])
         ->name('archive.index');
 
+    Route::get('/archive/{book}', [ArchiveController::class, 'show'])
+        ->name('archive.show');
+
     Route::view('/visit', 'visit')
         ->name('visit');
 

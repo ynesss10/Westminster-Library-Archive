@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <section class="bg-[#f7f4ef] px-6 md:px-16 py-12">
+    <section class="min-h-full bg-[#f7f4ef] px-6 py-12 md:min-h-[calc(100vh-9rem)] md:px-16">
 
         {{-- PAGE TITLE --}}
         <h1 class="font-serif text-3xl text-navy mb-6">
@@ -24,108 +24,107 @@
             </div>
         @endif
 
-        {{-- SEARCH BAR --}}
-        <form action="{{ route('archive.index') }}" method="GET" class="flex items-center gap-3 mb-6">
-            <div class="relative flex-1">
-                <input
-                    type="text"
-                    name="search"
-                    value="{{ request('search') }}"
-                    placeholder="Search books, authors, subjects..."
-                    class="w-full border border-gray-300 rounded-full pl-5 pr-12 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30"
-                >
-                <button type="submit" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-navy">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
+        <form action="{{ route('archive.index') }}" method="GET" class="mb-10">
+            <div class="relative mb-4">
+                <div class="relative flex-1">
+                    <input
+                        type="search"
+                        name="search"
+                        value="{{ request('search') }}"
+                        placeholder="Search by book title..."
+                        aria-label="Search archive by book title"
+                        class="w-full bg-white border border-gray-300 rounded-full pl-5 pr-14 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30"
+                    >
+                    <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-navy p-2 text-white hover:bg-[#241a5c] transition" aria-label="Search archive">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="relative w-full sm:w-auto">
+                    <select name="category" class="w-full sm:min-w-40 appearance-none border border-gray-300 rounded-full pl-5 pr-11 py-2 text-sm text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-navy/30">
+                        <option value="">All categories</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category }}" @selected(request('category') === $category)>{{ $category }}</option>
+                        @endforeach
+                    </select>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
                     </svg>
+                </div>
+
+                <div class="relative w-full sm:w-auto">
+                    <select name="author" class="w-full sm:min-w-40 appearance-none border border-gray-300 rounded-full pl-5 pr-11 py-2 text-sm text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-navy/30">
+                        <option value="">All authors</option>
+                        @foreach($authors as $author)
+                            <option value="{{ $author }}" @selected(request('author') === $author)>{{ $author }}</option>
+                        @endforeach
+                    </select>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
+                    </svg>
+                </div>
+
+                <div class="relative w-full sm:w-auto">
+                    <select name="year" class="w-full sm:min-w-32 appearance-none border border-gray-300 rounded-full pl-5 pr-11 py-2 text-sm text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-navy/30">
+                        <option value="">Any year</option>
+                        @foreach($years as $year)
+                            <option value="{{ $year }}" @selected((string) request('year') === (string) $year)>{{ $year }}</option>
+                        @endforeach
+                    </select>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
+                    </svg>
+                </div>
+
+                
+
+                <button type="submit" class="bg-navy text-white rounded-full px-6 py-2 text-sm font-semibold hover:bg-[#241a5c] transition">
+                    APPLY FILTERS
                 </button>
-            </div>
 
-            <button type="button" class="border border-gray-300 rounded-md p-3 text-gray-500 hover:text-navy hover:border-navy transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
+                @if(request()->hasAny(['search', 'category', 'author', 'year']))
+                    <a href="{{ route('archive.index') }}" class="text-sm text-gray-500 hover:text-navy hover:underline">
+                        Clear
+                    </a>
+                @endif
+            </div>
         </form>
-
-        {{-- FILTER PILLS --}}
-        <div class="flex flex-wrap items-center gap-3 mb-10">
-
-            <div class="relative">
-                <select class="appearance-none border border-gray-300 rounded-full pl-5 pr-10 py-2 text-sm text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-navy/30">
-                    <option value="">Type</option>
-                </select>
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-            </div>
-
-            <div class="relative">
-                <select class="appearance-none border border-gray-300 rounded-full pl-5 pr-10 py-2 text-sm text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-navy/30">
-                    <option value="">Author</option>
-                </select>
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-            </div>
-
-            <div class="relative">
-                <select class="appearance-none border border-gray-300 rounded-full pl-5 pr-10 py-2 text-sm text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-navy/30">
-                    <option value="">Year</option>
-                </select>
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-            </div>
-
-            <button type="button"
-                class="bg-navy text-white rounded-full px-6 py-2 text-sm font-semibold hover:bg-[#241a5c] transition">
-                APPLY
-            </button>
-        </div>
 
         {{-- ARCHIVE GRID --}}
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
 
             @forelse ($books as $book)
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
-                    <img src="{{ $book->cover_url ?? 'https://via.placeholder.com/300x400' }}"
-                         alt="{{ $book->title }}"
-                         class="w-full h-40 object-cover">
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <a href="{{ route('archive.show', $book) }}">
+                        <img src="{{ $book->cover ? asset('storage/' . $book->cover) : 'https://via.placeholder.com/300x400' }}"
+                             alt="{{ $book->title }}"
+                             class="w-full h-56 object-cover">
+                    </a>
 
-                    <div class="p-4 flex flex-col flex-1">
-                        <h3 class="font-serif text-lg text-navy mb-1">
-                            {{ $book->title }}
-                        </h3>
+                    <div class="p-4">
+                        <a href="{{ route('archive.show', $book) }}">
+                            <h3 class="font-serif text-lg text-navy mb-3 hover:underline">
+                                {{ $book->title }}
+                            </h3>
+                        </a>
 
-                        <p class="text-gray-500 text-sm mb-1">
-                            {{ $book->author }}
+                        <p class="text-gray-600 text-sm mb-1">
+                            By {{ $book->author }}
                         </p>
 
                         @if($book->category ?? false)
-                            <p class="text-gray-400 text-xs mb-3">
+                            <p class="text-gray-400 text-xs">
                                 {{ $book->category }}
                             </p>
                         @endif
-
-                        <div class="mt-auto flex flex-col gap-2 pt-2">
-                            <a href="{{ route('books.show', $book) }}"
-                               class="text-center text-sm text-gold font-semibold hover:underline">
-                                Baca Digital
-                            </a>
-
-                            <form action="{{ route('borrowings.request', $book) }}" method="POST">
-                                @csrf
-                                <button type="submit"
-                                    class="w-full bg-navy text-white text-sm font-medium py-2 rounded-md hover:bg-[#241a5c] transition">
-                                    Request Pinjam
-                                </button>
-                            </form>
-                        </div>
                     </div>
                 </div>
             @empty
-                <p class="col-span-full text-gray-500">Belum ada buku.</p>
+                <p class="col-span-full text-gray-500">Tidak ada buku yang ditemukan.</p>
             @endforelse
 
         </div>

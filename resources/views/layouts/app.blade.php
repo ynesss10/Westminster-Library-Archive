@@ -11,7 +11,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-white font-sans text-gray-800 antialiased">
+<body class="flex min-h-screen flex-col bg-white font-sans text-gray-800 antialiased">
 
     @if (auth()->check() && auth()->user()->role === 'admin')
         @include('layouts.partials.admin.header')
@@ -19,7 +19,7 @@
         @include('layouts.partials.user.header')
     @endif
 
-    <main>
+    <main class="flex-1">
         @yield('content')
     </main>
 

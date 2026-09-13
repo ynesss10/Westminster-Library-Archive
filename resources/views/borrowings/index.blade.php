@@ -24,24 +24,24 @@
                 </div>
             @endif
 
-            {{-- PENDING APPROVAL --}}
+            {{-- REQUEST STATUS --}}
             <div class="bg-white rounded-lg shadow-sm p-6">
                 <h3 class="font-serif text-lg text-navy pb-3 mb-4 border-b border-gold/40">
-                    Pending Approval
+                    Request Status
                 </h3>
 
                 <div class="flex flex-col divide-y divide-gray-100">
-                    @forelse ($pendingBorrowings ?? [] as $item)
+                    @forelse ($requestStatuses ?? [] as $item)
                         <div class="flex items-center justify-between py-3 text-sm">
                             <span class="text-navy">
                                 {{ $item->book->title ?? $item->title }} by {{ $item->book->author ?? $item->author }}
                             </span>
-                            <span class="text-gold font-medium whitespace-nowrap">
-                                Request Submitted | {{ \Carbon\Carbon::parse($item->requested_at ?? $item->created_at)->format('d/m/Y') }}
+                            <span class="{{ $item->status === 'rejected' ? 'text-red-500' : 'text-gold' }} font-medium whitespace-nowrap">
+                                {{ $item->status === 'rejected' ? 'Rejected' : 'Request Submitted' }} | {{ \Carbon\Carbon::parse($item->borrowing_date)->format('d/m/Y') }}
                             </span>
                         </div>
                     @empty
-                        <p class="text-gray-400 text-sm py-3">Tidak ada permintaan yang menunggu persetujuan.</p>
+                        <p class="text-gray-400 text-sm py-3">Belum ada request peminjaman.</p>
                     @endforelse
                 </div>
             </div>
@@ -59,8 +59,8 @@
                                 {{ $item->book->title ?? $item->title }} by {{ $item->book->author ?? $item->author }}
                             </span>
                             <span class="text-gold font-medium whitespace-nowrap">
-                                Active | {{ \Carbon\Carbon::parse($item->borrowed_at ?? $item->start_date)->format('d/m/Y') }}
-                                - {{ \Carbon\Carbon::parse($item->due_at ?? $item->end_date)->format('d/m/Y') }}
+                                Active | {{ \Carbon\Carbon::parse($item->borrowing_date)->format('d/m/Y') }}
+                                - {{ \Carbon\Carbon::parse($item->due_date)->format('d/m/Y') }}
                             </span>
                         </div>
                     @empty

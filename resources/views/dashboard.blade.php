@@ -9,7 +9,7 @@
              style="background-image: linear-gradient(rgba(27, 20, 64, 0.82), rgba(27, 20, 64, 0.68)), url('{{ asset('images/cina.jpeg') }}');">
         <div class="relative z-10 max-w-2xl">
             <p class="uppercase tracking-widest text-gold font-medium mb-4">
-                Library & Museum
+                Library & Archive
             </p>
 
             <h1 class="font-serif text-4xl md:text-5xl leading-tight mb-4">
@@ -23,12 +23,12 @@
             <div class="flex gap-4 flex-wrap">
                 <a href="{{ url('/books') }}"
                   class="bg-navy hover:bg-[#241a5c] transition text-white px-6 py-3 rounded-md font-medium">
-                  Explore the Library
+                  Explore the Books
                 </a>
 
-                <a href="{{ url('/books') }}"
+                <a href="{{ url('/archive') }}"
                    class="border border-white text-white hover:bg-white hover:text-navy transition px-6 py-3 rounded-md font-medium">
-                    Explore the Library
+                    Explore the Archives
                 </a>
             </div>
         </div>
