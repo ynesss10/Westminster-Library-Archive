@@ -652,6 +652,7 @@
                         CANCEL
                     </button>
 
+
                     <form action="{{ route('admin.borrowings.return', $borrowing) }}" method="POST" class="flex-1">
                         @csrf
                         <button type="submit" class="w-full

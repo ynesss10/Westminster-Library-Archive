@@ -13,11 +13,13 @@
 
 <body class="flex min-h-screen flex-col bg-white font-sans text-gray-800 antialiased">
 
-    @if (auth()->check() && auth()->user()->role === 'admin')
-        @include('layouts.partials.admin.header')
-    @else
-        @include('layouts.partials.user.header')
-    @endif
+    @unless(View::hasSection('hide-header'))
+        @if (auth()->check() && auth()->user()->role === 'admin')
+            @include('layouts.partials.admin.header')
+        @else
+            @include('layouts.partials.user.header')
+        @endif
+    @endunless
 
     <main class="flex-1">
         @yield('content')
