@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,14 +11,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen">
+<body class="min-h-screen bg-[#F7F4EF]">
 
     <div class="min-h-screen flex">
         <div class="hidden lg:block lg:w-[55%]
                    bg-cover bg-center" style="background-image: url('{{ asset('images/register-bg.jpg') }}');">
         </div>
 
-        <div class="w-full lg:w-[45%] bg-white flex flex-col">
+        <div class="w-full lg:w-[45%] bg-[#F7F4EF] flex flex-col">
             <div class="w-full max-w-md mx-auto px-8 -mt-20 lg:px-10">
 
                 <div class="-mb-24">
@@ -29,9 +30,6 @@
                         Create an Account
                     </h1>
                 </div>
-
-
-
 
                 @if ($errors->any())
                     <div class="mb-5 rounded-lg bg-red-50 border border-red-200 p-4">
